@@ -1,48 +1,35 @@
 package com.example.taxcalculator;
 
 public class TaxCalculator_abhishek {
-    double salary;
-    double mintax=0.01;
-    double midtax= 0.15;
-    double maxtax= 0.25;
+    private double salary;
 
-    public double getAmount() {
+    public TaxCalculator_abhishek() {
+    }
+
+    public double getSalary() {
         return salary;
     }
 
-    public void setAmount(double salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
-    public double taxableAmount(){
-        double amount=salary*12;
-        double grandPayableTax = 0;
-        if(amount<=200000){
-            double taxamount=amount*mintax;
-            return grandPayableTax=taxamount;
+    public double calculation() {
+        double tamount = 0;
+        if (salary <= 200000) {
+            tamount  = (salary / 100) * 1;
+        } else if (salary > 200000 && salary <= 350000) {
+            double Tax1 = (200000 / 100) * 1;
+            double remSalary= salary - 200000;
+            double  Tax2 = (remSalary / 100) * 15;
+            tamount = Tax1 + Tax2;
+        } else if (salary > 350000) {
+            double Tax1 = (200000 / 100) * 1;
+            double Tax2 = (150000 / 100) * 15;
+            double remSalary = salary - 350000;
+            double Tax3 = (remSalary/100)*25;
+            tamount= Tax1 + Tax2 + Tax3;
         }
-        else if (amount>200000 && amount<=350000){
-            double midAmount=200000;
-            double newamount=amount-midAmount;
-            double taxableamount=newamount*midtax;
-            double newamount2=amount-newamount;
-            double midTax=newamount2*mintax;
-            double totaltaxamount=taxableamount+midTax;
-            return grandPayableTax=totaltaxamount;
-        }
-        else if(amount>350000) {
-            double minAmount = 200000;
-            double mustPayTax=minAmount*mintax;
-            double midAmount=150000;
-            double midPayTax=midAmount*0.015;
-            double maxPayamount=amount-350000;
-            double maxPayTax=maxPayamount*maxtax;
-
-            double totaltaxamount = mustPayTax + midPayTax +maxPayTax;
-            return grandPayableTax = totaltaxamount;
-
-        }
-        return grandPayableTax;
+        return tamount;
     }
 }
-

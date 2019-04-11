@@ -8,51 +8,41 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.taxcalculator.TaxCalculator_abhishek;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btnCalculate;
-    private TextView tvOut,tvTaxableAmount;
-    private EditText etAmount;
+    private Button Calculate;
+    private TextView Taxamount;
+    private EditText Salary ;
+    private TaxCalculator_abhishek taxcalculator_sandesh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnCalculate=findViewById(R.id.btnCalculate);
-        tvTaxableAmount=findViewById(R.id.tvTaxAmount);
-        etAmount=findViewById(R.id.etSalary);
-        tvOut=findViewById(R.id.tvTotal);
-
-        btnCalculate.setOnClickListener(this);
+        Calculate=findViewById(R.id.Calculate);
+        Taxamount=findViewById(R.id.TaxAmount);
+        Salary=findViewById(R.id.Salary);
+        taxcalculator_sandesh=new TaxCalculator_abhishek();
+        Calculate.setOnClickListener(this);
     }
-    public void onClick(View v){
-        int id = v.getId();
-        if(id == R.id.btnCalculate)
-        {
-            if(!validate()){
-                return;
-            }
-            double salary=Double.parseDouble(etAmount.getText().toString());
 
-            TaxCalculator_abhishek taxCalculator_abhishek=new TaxCalculator_abhishek();
-            taxCalculator_abhishek.setAmount(salary);
-            Double tax=taxCalculator_abhishek.taxableAmount();
-            tvTaxableAmount.setText(Double.toString(tax));
-            double annualsalary=salary*12;
-            double totalsalary=annualsalary-tax;
-            tvOut.setText(Double.toString(totalsalary));
+    @Override
+    public void onClick(View v) {
+        if (TextUtils.isEmpty(Salary.getText().toString())) {
+            Salary.setError("Enter your salary.");
+            Salary.requestFocus();
+            return;
+
         }
-    }
-    public boolean validate(){
-        boolean isValid=true;
-        if(TextUtils.isEmpty(etAmount.getText().toString())){
-            etAmount.setError("Please Enter Your Salary");
-            etAmount.requestFocus();
-            isValid=false;
-        }return isValid;
+
+        Double salary = Double.parseDouble(Salary.getText().toString());
+
+        taxcalculator_sandesh.setSalary(salary);
+        Taxamount.setText(Double.toString (taxcalculator_sandesh.calculation()));
+
+
     }
 }
-
-
-
 
