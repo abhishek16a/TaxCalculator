@@ -8,13 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.taxcalculator.TaxCalculator_abhishek;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button Calculate;
     private TextView Taxamount;
     private EditText Salary ;
-    private TaxCalculator_abhishek taxcalculator_sandesh;
+    private TaxCalculator_abhishek taxcalculator_abhishek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Calculate=findViewById(R.id.Calculate);
         Taxamount=findViewById(R.id.TaxAmount);
         Salary=findViewById(R.id.Salary);
-        taxcalculator_sandesh=new TaxCalculator_abhishek();
+        taxcalculator_abhishek=new TaxCalculator_abhishek();
         Calculate.setOnClickListener(this);
     }
 
@@ -39,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Double salary = Double.parseDouble(Salary.getText().toString());
 
-        taxcalculator_sandesh.setSalary(salary);
-        Taxamount.setText(Double.toString (taxcalculator_sandesh.calculation()));
+        taxcalculator_abhishek.setSalary(salary);
+        Taxamount.setText(Double.toString (taxcalculator_abhishek.calculation()));
 
 
     }
